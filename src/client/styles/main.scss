@@ -1,3 +1,13 @@
-body {
-	background-color: darkslateblue;
-}
+@import 'normalize';
+@import 'mixins';
+@import 'functions';
+@import 'fonts';
+@import 'vars';
+@import 'base';
+@import 'animation';
+@import 'form';
+
+@import 'header';
+@import 'content';
+@import 'table';
+@import 'modal';

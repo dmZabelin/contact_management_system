@@ -15,7 +15,7 @@ const webpackCompiler = webpack(webpackConfig);
 
 nodemon({
 	script: path.resolve(__dirname, '../src/server/index.js'),
-	watch: [path.resolve(__dirname, '../public/client'), path.resolve(__dirname, '../public/server')]
+	watch: [path.resolve(__dirname, '../public')]
 });
 
 hmrServer.use(

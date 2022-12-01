@@ -1,0 +1,83 @@
+
+@mixin d-flex {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+}
+@mixin flex-center {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@mixin flex-start {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+@mixin flex-end {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+@mixin placeholder($color, $size) {
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-size: $size;
+		line-height: 1;
+	}
+	&:-moz-placeholder {
+		color: $color;
+		font-size: $size;
+		line-height: 1;
+	}
+	&::-moz-placeholder {
+		color: $color;
+		font-size: $size;
+		line-height: 1;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+		font-size: $size;
+		line-height: 1;
+	}
+}
+
+@mixin closeBtn {
+	position: absolute;
+	top: vw(10);
+	right: vw(10);
+	width: vw(20);
+	height: vw(20);
+	background-color: transparent;
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		top: vw(10);
+		left: 0;
+		display: inline-block;
+		width: 100%;
+		height: vw(2);
+		background-color: var(--black);
+	}
+	&:after {
+		transform: rotate(45deg);
+	}
+	&:before {
+		transform: rotate(-45deg);
+	}
+}
