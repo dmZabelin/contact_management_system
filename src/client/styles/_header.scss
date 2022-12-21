@@ -8,8 +8,17 @@
 	&__logo {
 		margin-right: vw(50);
 		display: block;
-		width: vw(50);
-		height: vw(50);
+		width: vw(75);
+		svg {
+			max-width: 100%;
+			height: auto;
+			.figure {
+				fill: var(--firm);
+			}
+			.txt {
+				fill: var(--text-color);
+			}
+		}
 	}
 	&__input-search {
 		margin-right: auto;
@@ -35,6 +44,8 @@
 
 
 .theme-switch-wrapper {
+	position: relative;
+	z-index: 999;
 	display: flex;
 	align-items: center;
 }

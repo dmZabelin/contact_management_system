@@ -183,9 +183,15 @@ template {
 }
 
 [hidden] {
-	display: none;
+	display: none !important;
 }
 
 img {
 	max-width: 100%;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }

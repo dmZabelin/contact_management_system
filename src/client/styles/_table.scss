@@ -24,6 +24,7 @@
 				background-image: url("../assets/images/spinner.svg");
 				background-repeat: no-repeat;
 				background-position: center center;
+				background-size: vw(100) vw(100);
 			}
 		}
 	}
@@ -82,9 +83,9 @@
 				&::after {
 					content: '';
 					display: inline-block;
-					margin-left: .5rem;
-					width: .8rem;
-					height: .8rem;
+					margin-left: vw(5);
+					width: vw(8);
+					height: vw(8);
 					background-image: url("../assets/images/arrow.svg");
 					background-repeat: no-repeat;
 					background-position: center center;

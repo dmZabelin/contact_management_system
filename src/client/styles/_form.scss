@@ -43,7 +43,7 @@
 			padding: vw(5) vw(20) 0 0;
 			width: 100%;
 			border: none;
-			border-bottom: 1px solid var(--text-grey);
+			border-bottom: vw(1) solid var(--border-color);
 			background-color: transparent;
 			transition: border-color .2s ease;
 			color: var(--text-color);
@@ -73,6 +73,24 @@
 			color: var(--red);
 		}
 	}
+	&_clients {
+		padding: vw(40) 0 0 0;
+		box-shadow: none;
+		.form__field {
+			padding: 0 vw(30);
+		}
+		label {
+			left: vw(30);
+			&:not(.not-required) {
+				&:after {
+					content: '*';
+					display: inline-block;
+					color: var(--firm);
+					transform: translateY(vw(-3));
+				}
+			}
+		}
+	}
 }
 
 .btn_auth {
@@ -90,4 +108,97 @@
 
 .error-message {
 	color: var(--red);
+}
+
+// Modal form
+.add-contact {
+	margin-bottom: vw(25);
+	padding: vw(25) vw(30);
+	background-color: var(--add-contact-bg);
+	text-align: center;
+	&__btn {
+		display: inline-flex;
+		align-items: center;
+		font-family: "OpenSans", sans-serif;
+		font-weight: 600;
+		letter-spacing: .05em;
+		color: var(--text-color);
+		&:before {
+			content: '';
+			margin-right: vw(7.5);
+			display: inline-block;
+			width: vw(13.5);
+			height: vw(13.5);
+			background-image: url("../assets/images/plus.svg");
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+		&[disabled] {
+			position: absolute;
+			visibility: hidden;
+		}
+	}
+}
+
+.btn-clients {
+	margin-bottom: vw(15);
+}
+
+.btn-reset {
+	position: relative;
+	margin: auto;
+	display: block;
+	max-width: fit-content;
+	font-weight: 400;
+	letter-spacing: .07em;
+	color: var(--text-color);
+	&:after {
+		position: absolute;
+		left: 0;
+		bottom: vw(-2);
+		content: '';
+		display: inline-block;
+		width: 100%;
+		height: vw(1);
+		background-color: var(--text-color);
+	}
+}
+
+.contact-field {
+	margin-bottom: vw(25);
+	display: flex;
+	align-items: center;
+	border: vw(1) solid var(--border-color);
+	&__btn, &__input {
+		padding: 0 vw(12);
+		height: vw(37);
+		line-height: vw(37);
+	}
+	&__input {
+		width: 100%;
+		margin-left: vw(-1);
+		outline: none;
+		border: none;
+		background-color: var(--bg-color);
+		color: var(--text-color);
+	}
+	&__btn {
+		position: relative;
+		background-color: var(--select-btn-bg);
+		border-left: vw(1) solid var(--border-color);
+		&:after {
+			content: '';
+			position: absolute;
+			inset: 0 0 0 0;
+			z-index: 2;
+		}
+		svg path {
+			transition: fill .2s ease;
+		}
+		&:hover {
+			svg path {
+				fill: var(--firm);
+			}
+		}
+	}
 }

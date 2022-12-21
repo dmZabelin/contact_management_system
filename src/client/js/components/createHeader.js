@@ -1,12 +1,13 @@
 import { el, setChildren } from 'redom';
-import logoImg from '../../assets/images/dm_logo.svg';
 import createThemeSwitch from './createThemeSwitch.js';
+import { svgLogo } from './index.js';
 
 export default () => {
 	const themeSwitch = createThemeSwitch();
 	const header = el('header.header');
 
-	const logo = el('img.header__logo', { src: logoImg, alt: 'Logo' });
+	const logo = el('.header__logo');
+	logo.innerHTML = svgLogo();
 
 	setChildren(header, [logo, themeSwitch]);
 
