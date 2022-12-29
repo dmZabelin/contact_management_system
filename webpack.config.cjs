@@ -4,13 +4,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const NODE_ENV = process.env.NODE_ENV;
+const { NODE_ENV } = process.env;
 const IS_DEV = NODE_ENV === 'development';
-const DEV_PLUGINS = [
-	new HotModuleReplacementPlugin(),
-];
+const DEV_PLUGINS = [new HotModuleReplacementPlugin()];
 const PROD_PLUGINS = [
 	new ImageMinimizerPlugin({
 		minimizer: {
@@ -25,23 +23,24 @@ const COMMON_PLUGINS = [
 	new CleanWebpackPlugin(),
 	new HtmlWebpackPlugin({
 		template: path.join(__dirname, 'src/client/index.html'),
-		filename: 'index.html',
+		filename: 'index.html'
 	}),
 	new MiniCssExtractPlugin({
 		filename: 'client/css/main.css'
 	}),
 	new CopyPlugin({
-		patterns: [
-			{ from: path.resolve(__dirname, 'src/server'), to: path.resolve(__dirname, 'public/server')},
-		]
-	}),
+		patterns: [{ from: path.resolve(__dirname, 'src/server'), to: path.resolve(__dirname, 'public/server') }]
+	})
 ];
 
 module.exports = {
 	mode: NODE_ENV,
 	devtool: 'eval',
 	entry: IS_DEV
-		? [ path.resolve(__dirname, './src/client/js/index.js'), 'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr&reload=true']
+		? [
+				path.resolve(__dirname, './src/client/js/index.js'),
+				'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr&reload=true'
+		  ]
 		: path.resolve(__dirname, './src/client/js/index.js'),
 	output: {
 		path: path.resolve(__dirname, 'public'),
@@ -64,11 +63,11 @@ module.exports = {
 			},
 			{
 				test: /\.(woff|woff2)$/i,
-				type: "asset/resource",
+				type: 'asset/resource',
 				generator: {
-					filename: "client/assets/fonts/[name][ext]",
-				},
-			},
+					filename: 'client/assets/fonts/[name][ext]'
+				}
+			}
 		]
 	}
 };

@@ -2,16 +2,20 @@ import jwt from 'jsonwebtoken';
 import UserModel from '../models/user.js';
 
 export default async (req, res, next) => {
-	if (!req.cookies.token) {
-		return next();
+	const token = (req.headers.authorization || '').replace(/Bearer\s?/, '');
+	if (token) {
+		try {
+			const { _id } = jwt.verify(token, 'secret_user', null, null);
+			req.user = await UserModel.findOne({ _id });
+			next();
+		} catch (err) {
+			return res.status(403).json({
+				message: 'No access'
+			});
+		}
+	} else {
+		return res.status(403).json({
+			message: 'No access'
+		});
 	}
-	try {
-		const { _id } = jwt.verify(req.cookies.token, 'secret_user', null, null);
-		req.user = await UserModel.findOne({ _id });
-		next();
-	} catch (err) {
-		console.log(err.message);
-		return res.sendStatus(404);
-	}
-	next();
 };

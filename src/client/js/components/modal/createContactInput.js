@@ -6,7 +6,7 @@ export default (target) => {
 	const select = createContactSelect();
 
 	const contactField = el('.contact-field', [
-		el('input.contact-field__input', { type: 'text', name: 'contact-input' }),
+		el('input.contact-field__input', { type: 'text', name: 'phone' }),
 		el(
 			'button.contact-field__btn',
 			{ type: 'button', 'data-action': 'del-contact', hidden: true },

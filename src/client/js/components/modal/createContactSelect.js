@@ -5,14 +5,15 @@ const selectOptions = {
 	extPhone: 'Доп. телефон',
 	email: 'Email',
 	facebook: 'Facebook',
-	vk: 'Vk'
+	vk: 'Vk',
+	other: 'Другое'
 };
 
 export function selectActions(e) {
 	const btn = this.querySelector('.custom-select__button');
 	const list = this.querySelector('.custom-select__list');
 	const items = this.querySelectorAll('.custom-select__list-item');
-	const input = this.querySelector('input[name=select-category]');
+	const input = this.nextSibling;
 
 	btn.classList.toggle('active');
 	list.classList.toggle('visible');
@@ -24,8 +25,16 @@ export function selectActions(e) {
 		e.target.classList.add('selected');
 		btn.textContent = e.target.textContent;
 
-		input.value = e.target.dataset.value;
+		input.name = e.target.dataset.value;
 		list.classList.remove('visible');
+	}
+
+	if (e.target.dataset.value === 'other') {
+		const res = prompt('Введите название вашей соц сети').trim();
+		if (res.length) {
+			btn.textContent = res;
+			input.name = res;
+		}
 	}
 
 	document.addEventListener('click', (ev) => {
@@ -54,8 +63,7 @@ export default () => {
 					text
 				)
 			)
-		]),
-		el('input', { type: 'text', name: 'select-category', value: '', hidden: true })
+		])
 	]);
 
 	select.addEventListener('click', selectActions);

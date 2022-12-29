@@ -12,6 +12,35 @@ function modalListener(event) {
 	// Delete modal window
 	target.hasAttribute('data-close') && deleteModal(modal); // eslint-disable-line no-use-before-define
 
+	// Save form data
+	if (target.dataset.action === 'save') {
+		const token = JSON.parse(localStorage.getItem('token'));
+		const form = document.forms.add;
+		const formData = {};
+		const contacts = [];
+
+		[...form.elements].forEach((input) => {
+			if (input.nodeName === 'INPUT') {
+				if (input.classList.contains('form__field-input')) {
+					formData[input.name] = input.value;
+				} else {
+					contacts.push({ socialName: input.name, socialLink: input.value });
+				}
+			}
+		});
+
+		formData.contacts = contacts;
+
+		fetch('/clients', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify(formData)
+		});
+	}
+
 	// Add client contacts field
 	if (target.dataset.action === 'add-contact') {
 		if (++countContacts === 10) {

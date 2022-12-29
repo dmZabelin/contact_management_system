@@ -60,5 +60,8 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+	if (!req.user) {
+		return res.status(404).json({ message: 'Ошибка Авторизации.' });
+	}
 	res.status(201).json({ message: 'success' });
 };
