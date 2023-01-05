@@ -14,7 +14,7 @@ const PROD_PLUGINS = [
 		minimizer: {
 			implementation: ImageMinimizerPlugin.imageminMinify,
 			options: {
-				plugins: [['mozjpeg', { quality: 50 }], 'imagemin-pngquant', 'imagemin-svgo']
+				plugins: [['mozjpeg', { quality: 50 }],  'imagemin-svgo']
 			}
 		}
 	})

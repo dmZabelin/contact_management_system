@@ -1,5 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
+const subSchema = mongoose.Schema({
+	socialName: String,
+	socialLink: String
+}, {_id: false})
+
 const ClientSchema = new Schema(
 	{
 		name: {
@@ -11,7 +16,7 @@ const ClientSchema = new Schema(
 			require: true
 		},
 		midname: String,
-		contacts: [{ socialName: String, socialLink: String }],
+		contacts: [subSchema],
 		user: {
 			type: Schema.Types.ObjectId,
 			ref: 'User',
