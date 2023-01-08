@@ -7,7 +7,7 @@ const ADD_FORM_TITLE = 'Новый клиент';
 const DEL_FORM_TITLE = 'Удалить клиента';
 const CHANGE_FORM_TITLE = 'Изменить данные';
 
-export default (e) => {
+export function createModal(e) {
 	const { target } = e;
 	if (document.body.querySelector('.modal')) return;
 

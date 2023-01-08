@@ -1,3 +1,5 @@
 import { el } from 'redom';
 
-export default () => el('button.add-button.main__btn', { 'data-action': 'add' }, 'Добавить клиента');
+export function createAddButton () {
+	return el('button.add-button.main__btn', { 'data-action': 'add' }, 'Добавить клиента');
+}

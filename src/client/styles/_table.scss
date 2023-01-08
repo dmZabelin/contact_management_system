@@ -37,7 +37,7 @@
 		display: flex;
 		align-items: center;
 		button, span {
-			font-size: vw(12);
+			font-size: vw(14);
 			color: var(--text-grey);
 			font-weight: 400;
 		}
@@ -52,11 +52,7 @@
 				}
 			}
 		}
-		&:nth-child(1) {
-			width: 15%;
-		}
 		&:nth-child(2) {
-			width: 27%;
 			&::before {
 				content: 'А-Я';
 				margin-left: vw(3);
@@ -64,16 +60,6 @@
 				font-size: vw(10);
 				order: 1;
 			}
-		}
-		&:nth-child(3),
-		&:nth-child(4) {
-			width: 12.5%;
-		}
-		&:nth-child(5) {
-			width: 15%;
-		}
-		&:nth-child(6) {
-			width: 18%;
 		}
 		&:nth-child(1),
 		&:nth-child(2),
@@ -94,4 +80,96 @@
 			}
 		}
 	}
+}
+
+.clients-list {
+	&__item, &__data-head {
+		&:nth-child(1){
+			width: 12%;
+			color: var(--text-grey);
+		}
+		&:nth-child(2){
+			width: 27%;
+		}
+		&:nth-child(3),
+		&:nth-child(4){
+			width: 13.5%;
+			span {
+				padding-left: vw(15);
+				color: var(--text-grey);
+			}
+		}
+		&:nth-child(5){
+			width: 18%;
+		}
+		&:nth-child(6){
+			width: 16%;
+		}
+	}
+	&__item {
+		padding: vw(25) vw(20);
+		border-bottom: vw(1) solid var(--grey);
+	}
+	&__edit-client, &__remove-client {
+		color: var(--text-color);
+		&:before {
+			content: '';
+			margin-right: vw(5);
+			display: inline-block;
+			width: vw(18);
+			height: vw(18);
+			background-size: cover;
+			vertical-align: bottom;
+		}
+	}
+	&__edit-client {
+		margin-right: vw(30);
+		&:before {
+			background-image: url("../assets/images/edit.svg");
+		}
+	}
+	&__remove-client {
+		&:before {
+			background-image: url("../assets/images/cancel-red.svg");
+		}
+	}
+}
+
+.table-message {
+	padding-top: vw(100);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	& span {
+		opacity: 0;
+		&:first-child {
+			margin-top: vw(100);
+		}
+		&:nth-child(2) {
+			animation-delay: .25s;
+		}
+		&:last-child {
+			animation-delay: .50s;
+		}
+		margin: auto;
+		display: block;
+		width: vw(51);
+		height: vw(30);
+		background-image: url("../assets/images/arrow-table.svg");
+		background-size: cover;
+		animation-name: arrowTable;
+		animation-duration: 1.5s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+	}
+}
+
+.table-error-msg {
+	position: absolute;
+	inset: 0 0 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--red);
 }

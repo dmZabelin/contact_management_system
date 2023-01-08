@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserModel from '../models/user.js';
 
-// eslint-disable-next-line import/prefer-default-export
 export const signup = async (req, res) => {
 	try {
 		const isUserAuth = await UserModel.findOne({ email: req.body.email });

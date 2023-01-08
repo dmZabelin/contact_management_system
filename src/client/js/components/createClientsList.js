@@ -1,6 +1,10 @@
 import { el, setAttr } from 'redom';
+import { createClientItem } from './createClientItem.js';
+import { createTableMessage } from './createTableMessage.js';
+import { createTableErrorMsg } from './createTableErrorMsg.js';
 
-export default () => {
+export function createClientsList() {
+	const token = JSON.parse(localStorage.getItem('token'));
 	const table = el('table.clients-list');
 	const thead = el('thead.clients-list__head');
 	const tBody = el('tBody.clients-list__body.isLoading');
@@ -35,7 +39,36 @@ export default () => {
 		});
 		target.classList.add('active');
 	});
+
+	fetch('/clients', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${token}`
+		}
+	})
+		.then((res) => {
+			if (res.status !== 201) {
+				throw new Error('Server Error');
+			} else {
+				return res.json();
+			}
+		})
+		.then((data) => {
+			if (!data.length) {
+				tBody.append(createTableMessage());
+			}
+			data.forEach((clientData) => {
+				tBody.append(createClientItem(clientData));
+			});
+			tBody.classList.remove('isLoading');
+		})
+		.catch((err) => {
+			tBody.append(createTableErrorMsg(err));
+			tBody.classList.remove('isLoading');
+		});
+
 	thead.append(headRow);
 	table.append(thead, tBody);
 	return { table, tBody };
-};
+}

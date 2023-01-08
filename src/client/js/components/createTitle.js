@@ -1,3 +1,5 @@
 import { el } from 'redom';
 
-export default () => el('h1.main__title', {}, 'Клиенты');
+export function createTitle() {
+	return el('h1.main__title', {}, 'Клиенты');
+}

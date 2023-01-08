@@ -1,6 +1,6 @@
 import { el } from 'redom';
 
-export default () => {
+export function createThemeSwitch() {
 	const currentTheme = localStorage.getItem('theme');
 
 	if (currentTheme) {

@@ -1,8 +1,8 @@
 import { el, setChildren } from 'redom';
-import createThemeSwitch from './createThemeSwitch.js';
-import { svgLogo } from './index.js';
+import {svgLogo} from "./svgLogo.js";
+import {createThemeSwitch} from "./createThemeSwitch.js";
 
-export default () => {
+export function createHeader () {
 	const themeSwitch = createThemeSwitch();
 	const header = el('header.header');
 
@@ -12,4 +12,4 @@ export default () => {
 	setChildren(header, [logo, themeSwitch]);
 
 	return { header, themeSwitch };
-};
+}

@@ -1,7 +1,7 @@
 import { el } from 'redom';
 
-export default () =>
-	el('form.form.form_auth', { name: 'signup', hidden: true }, [
+export function createSignupForm() {
+	return el('form.form.form_auth', { name: 'signup', hidden: true }, [
 		el('h2.form__title', 'Форма регистрации'),
 		el('button.btn_toggle', { type: 'button' }, 'Войти'),
 		el('div.form__field', [
@@ -27,3 +27,5 @@ export default () =>
 		el('button.btn.btn_auth', { type: 'submit' }, 'Отправить'),
 		el('p.error-message')
 	]);
+}
+

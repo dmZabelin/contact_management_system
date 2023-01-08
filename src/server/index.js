@@ -3,9 +3,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 import * as UserController from './controllers/UserController.js';
+import * as ClientsController from './controllers/ClientsController.js';
 import checkAuth from './utils/checkAuth.js';
-
-import ClientModel from './models/client.js';
 
 dotenv.config();
 
@@ -31,23 +30,8 @@ app.post('/signup', UserController.signup);
 app.post('/login', UserController.login);
 app.get('/logout', checkAuth, UserController.logout);
 
-app.post('/clients', checkAuth, async (req, res) => {
-	try {
-		const doc = new ClientModel({
-			name: req.body.name,
-			surname: req.body.surname,
-			midname: req.body.midname,
-			contacts: req.body.contacts,
-			user: req.user
-		});
-
-		const client = await doc.save();
-		res.json(client);
-	} catch (err) {
-		console.log(err);
-		res.status(500).json({ message: 'Failed to create client.' });
-	}
-});
+app.post('/clients', checkAuth, ClientsController.addClient);
+app.get('/clients', checkAuth, ClientsController.getAllClients)
 
 app.listen(PORT, () => {
 	console.log(`Сервер CRM запущен. Вы можете использовать его по адресу http://localhost:${PORT}`);

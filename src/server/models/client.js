@@ -7,6 +7,10 @@ const subSchema = mongoose.Schema({
 
 const ClientSchema = new Schema(
 	{
+		clientId: {
+			type: String,
+			require: true,
+		},
 		name: {
 			type: String,
 			require: true
@@ -24,8 +28,13 @@ const ClientSchema = new Schema(
 		}
 	},
 	{
-		timestamps: true
+		timestamps: true,
+		toJSON: { virtuals: true }
 	}
 );
+
+ClientSchema.virtual('fullName').get(function() {
+	return `${this.surname  } ${  this.name  } ${  this.midname}`;
+});
 
 export default mongoose.model('Client', ClientSchema);
